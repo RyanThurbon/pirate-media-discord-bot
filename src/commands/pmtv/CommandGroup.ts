@@ -79,7 +79,7 @@ export class PMTVCommand extends Subcommand {
                 "We provide one of the most reliable and competitively priced IPTV services currently available. We offer 24/7 support and a smooth, buffer-free streaming experience!",
             )
             .addLargeSeparator()
-            .addSection("Features", [
+            .addSectionList("Features", [
                 `${bold("Extensive channel selection")} - 18,000+ channels`,
                 `${bold("High-quality streaming")} - No lag or buffering, HD experience`,
                 `${bold("No ads, no waiting")} - Just pure entertainment`,
@@ -90,12 +90,12 @@ export class PMTVCommand extends Subcommand {
             .addLargeSeparator();
 
         for (const [title, plans] of Object.entries(this.pmtvPlans)) {
-            container.addSection(title, plans.map(inlineCode));
+            container.addSectionList(title, plans.map(inlineCode));
         }
 
         return container
             .addLargeSeparator()
-            .addSection("Payment Options", ["PayPal", "Crypto"])
+            .addSectionList("Payment Options", ["PayPal", "Crypto"])
             .addLargeSeparator()
             .addActionButtons(trialButton, purchaseButton)
             .build();

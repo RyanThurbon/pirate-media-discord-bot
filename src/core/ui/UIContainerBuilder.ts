@@ -38,19 +38,31 @@ export class UIContainerBuilder {
         }
     }
 
-    public addSection(text: string, items: string[]): UIContainerBuilder {
+    public addSectionList(text: string, items: string[]): UIContainerBuilder {
         this.addHeading(bold(text), HeadingLevel.Three);
         this.addText(unorderedList(items));
         return this;
     }
 
-    public addLargeSeparator(): UIContainerBuilder {
-        this.container.addSeparatorComponents((separator) => separator.setSpacing(SeparatorSpacingSize.Large));
+    public addSection(text: string, items: string[]): UIContainerBuilder {
+        this.addHeading(bold(text), HeadingLevel.Three);
+        for (const item of items) {
+            this.addText(item);
+        }
         return this;
     }
 
-    public addSmallSeparator(): UIContainerBuilder {
-        this.container.addSeparatorComponents((separator) => separator.setSpacing(SeparatorSpacingSize.Small));
+    public addLargeSeparator(showDivider = true): UIContainerBuilder {
+        this.container.addSeparatorComponents((separator) =>
+            separator.setSpacing(SeparatorSpacingSize.Large).setDivider(showDivider),
+        );
+        return this;
+    }
+
+    public addSmallSeparator(showDivider = true): UIContainerBuilder {
+        this.container.addSeparatorComponents((separator) =>
+            separator.setSpacing(SeparatorSpacingSize.Small).setDivider(showDivider),
+        );
         return this;
     }
 

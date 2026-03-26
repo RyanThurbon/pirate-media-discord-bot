@@ -98,6 +98,9 @@ export class PMTVTicketPurchaseInfoModalSubmitHandler extends InteractionHandler
             .setLabel("Close ticket")
             .setStyle(ButtonStyle.Danger);
 
+        const pricingPlan = cast<PMTVPricingPlan>(duration);
+        const connectionCount = cast<PMTVConnectionCount>(connections);
+
         const container = UIContainerBuilder.create()
             .addAccent(Colors.DarkBlue)
             .addHeading("PirateMedia PMTV Purchase Ticket", HeadingLevel.Three)
@@ -105,20 +108,12 @@ export class PMTVTicketPurchaseInfoModalSubmitHandler extends InteractionHandler
                 "Thank you for creating a ticket. Someone will get back to you soon. In the meantime, please ensure the below details are accurate.",
             )
             .addLargeSeparator()
-            .addText(bold("Preferred username"))
-            .addText(username)
-            .addText(bold("Preferred password"))
-            .addText(password)
-            .addText(bold("Plan duration"))
-            .addText(duration)
-            .addText(bold("Device connections"))
-            .addText(connections)
-            .addText(bold("Payment method"))
-            .addText(paymentMethod)
-            .addText(bold("Total cost"))
-            .addText(
-                `$${this.getTotalPurchaseCost(cast<PMTVPricingPlan>(duration), cast<PMTVConnectionCount>(connections))}`,
-            )
+            .addText(`${bold("Preferred username")}\n${username}`)
+            .addText(`${bold("Preferred password")}\n${password}`)
+            .addText(`${bold("Plan duration")}\n${duration}`)
+            .addText(`${bold("Device connections")}\n${connections}`)
+            .addText(`${bold("Payment method")}\n${password}`)
+            .addText(`${bold("Total cost")}\n$${this.getTotalPurchaseCost(pricingPlan, connectionCount)}`)
             .addLargeSeparator()
             .addActionButtons(closeTicketButton)
             .build();

@@ -88,10 +88,8 @@ export class PMTVTicketTrialInfoModalSubmitHandler extends InteractionHandler {
                 "Thank you for creating a ticket. Someone will get back to you soon. In the meantime, please ensure the below details are accurate.",
             )
             .addLargeSeparator()
-            .addText(bold("Preferred username"))
-            .addText(username)
-            .addText(bold("Preferred password"))
-            .addText(password)
+            .addText(`${bold("Preferred username")}\n${username}`)
+            .addText(`${bold("Preferred password")}\n${password}`)
             .addLargeSeparator()
             .addActionButtons(closeTicketButton)
             .build();

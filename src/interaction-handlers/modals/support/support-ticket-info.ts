@@ -85,10 +85,8 @@ export class SupportTicketInfoModalSubmitHandler extends InteractionHandler {
                 "Thank you for creating a ticket. Someone will get back to you soon. In the meantime, please ensure the below details are accurate.",
             )
             .addLargeSeparator()
-            .addText(bold("Issue category"))
-            .addText(category)
-            .addText(bold("Issue description"))
-            .addText(issue)
+            .addText(`${bold("Issue category")}\n${category}`)
+            .addText(`${bold("Issue description")}\n${issue}`)
             .addLargeSeparator()
             .addActionButtons(closeTicketButton)
             .build();
