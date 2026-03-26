@@ -1,0 +1,22 @@
+{
+    "name": "pirate-media-bot",
+    "main": "src/init.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "start": "bun src/init.ts"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "@sapphire/decorators": "^6.2.0",
+        "@sapphire/framework": "^5.5.0",
+        "@sapphire/plugin-subcommands": "^7.0.1",
+        "@sapphire/time-utilities": "^1.7.14",
+        "discord.js": "^14.25.1"
+    }
+}
