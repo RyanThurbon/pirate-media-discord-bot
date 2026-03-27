@@ -8,6 +8,7 @@ import {
 } from "@/lib/constants";
 import { ApplyOptions } from "@sapphire/decorators";
 import { InteractionHandler, InteractionHandlerTypes } from "@sapphire/framework";
+import { cast } from "@sapphire/utilities";
 import type { ButtonInteraction, SelectMenuComponentOptionData } from "discord.js";
 import { LabelBuilder, ModalBuilder, StringSelectMenuBuilder, TextInputBuilder, TextInputStyle } from "discord.js";
 
@@ -97,7 +98,7 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
     private get deviceConnections(): SelectMenuComponentOptionData[] {
         return PMTV_DEVICE_CONNECTIONS.map((count) => ({
             label: `${count} connections`,
-            value: count.toString(),
+            value: cast<string>(count),
         }));
     }
 

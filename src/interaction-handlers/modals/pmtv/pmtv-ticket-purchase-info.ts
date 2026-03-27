@@ -53,7 +53,7 @@ export class PMTVTicketPurchaseInfoModalSubmitHandler extends InteractionHandler
         const totalCost = PMTV_PRICE_MAP[plan][connections];
 
         const ticketChannel = await createTicketChannel(interaction, {
-            title: "PirateMedia PMTV Purchase Ticket",
+            title: "PMTV Purchase Ticket",
             category: "Purchase",
             parentId: ChannelParentIds.PMTVTickets,
             fields: {
