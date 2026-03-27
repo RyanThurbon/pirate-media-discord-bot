@@ -26,7 +26,7 @@ export class PMClient extends SapphireClient {
     }
 
     override login(): Promise<string> {
-        return super.login(cast<string>(process.env.BOT_TOKEN_DEV));
+        return super.login(cast<string>(process.env.BOT_TOKEN));
     }
 
     async abort(error: unknown): Promise<never> {

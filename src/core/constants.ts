@@ -1,6 +1,6 @@
 export const enum ChannelParentIds {
-    SupportTickets = "1468872910759395411",
-    PMTVTickets = "1468872870481498165",
+    SupportTickets = "1272506359358951579",
+    PMTVTickets = "1440216852176568340",
 }
 
 export const enum ButtonCustomIds {

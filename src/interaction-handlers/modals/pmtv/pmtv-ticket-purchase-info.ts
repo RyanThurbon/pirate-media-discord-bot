@@ -100,6 +100,7 @@ export class PMTVTicketPurchaseInfoModalSubmitHandler extends InteractionHandler
 
         const pricingPlan = cast<PMTVPricingPlan>(duration);
         const connectionCount = cast<PMTVConnectionCount>(connections);
+        const totalCost = this.getTotalPurchaseCost(pricingPlan, connectionCount);
 
         const container = UIContainerBuilder.create()
             .addAccent(Colors.DarkBlue)
@@ -113,7 +114,7 @@ export class PMTVTicketPurchaseInfoModalSubmitHandler extends InteractionHandler
             .addText(`${bold("Plan duration")}\n${duration}`)
             .addText(`${bold("Device connections")}\n${connections}`)
             .addText(`${bold("Payment method")}\n${password}`)
-            .addText(`${bold("Total cost")}\n$${this.getTotalPurchaseCost(pricingPlan, connectionCount)}`)
+            .addText(`${bold("Total cost")}\n$${totalCost}`)
             .addLargeSeparator()
             .addActionButtons(closeTicketButton)
             .build();
