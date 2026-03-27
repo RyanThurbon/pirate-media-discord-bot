@@ -1,4 +1,4 @@
-import { Precondition, type ChatInputCommand } from "@sapphire/framework";
+import { Precondition } from "@sapphire/framework";
 import type { ChatInputCommandInteraction } from "discord.js";
 import { MessageFlags } from "discord.js";
 

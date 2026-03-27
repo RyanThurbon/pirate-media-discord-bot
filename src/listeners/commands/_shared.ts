@@ -1,4 +1,4 @@
-import { UIContainer } from "@/core/ui/UIContainer";
+import { UIMessage } from "@/lib/ui/UIMessage";
 import type { ChatInputCommandDeniedPayload, ChatInputCommandErrorPayload } from "@sapphire/framework";
 import { container, UserError } from "@sapphire/framework";
 import type { ChatInputCommandInteraction } from "discord.js";
@@ -26,7 +26,7 @@ export async function handleChatInputDenied(error: UserError, payload: ChatInput
 }
 
 function notify(interaction: ChatInputCommandInteraction, message: string, isError = false) {
-    const container = isError ? UIContainer.error(message) : UIContainer.warn(message);
+    const container = isError ? UIMessage.error(message) : UIMessage.warning(message);
 
     if (interaction.deferred || interaction.replied) {
         return interaction.editReply({

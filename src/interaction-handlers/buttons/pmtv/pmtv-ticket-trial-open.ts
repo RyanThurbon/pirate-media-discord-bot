@@ -1,4 +1,4 @@
-import { ButtonCustomIds, ModalCustomIds, ModalInputCustomIds } from "@/core/constants";
+import { ButtonCustomIds, ModalCustomIds, ModalInputCustomIds } from "@/lib/constants";
 import { ApplyOptions } from "@sapphire/decorators";
 import { InteractionHandler, InteractionHandlerTypes } from "@sapphire/framework";
 import type { ButtonInteraction } from "discord.js";
@@ -9,7 +9,7 @@ import { LabelBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from "di
 })
 export class PMTVTicketTrialOpenButtonHandler extends InteractionHandler {
     public override parse(interaction: ButtonInteraction) {
-        if (interaction.customId !== ButtonCustomIds.PMTVTicketTrialOpen) {
+        if (interaction.customId !== ButtonCustomIds.pmtv.trial.open) {
             return this.none();
         }
 
@@ -18,7 +18,7 @@ export class PMTVTicketTrialOpenButtonHandler extends InteractionHandler {
 
     public async run(interaction: ButtonInteraction) {
         const modal = new ModalBuilder()
-            .setCustomId(ModalCustomIds.PMTVTicketTrialInfo)
+            .setCustomId(ModalCustomIds.pmtv.trial.info)
             .setTitle("Your PMTV trial account details")
             .addLabelComponents(this.labelComponents);
 
@@ -31,7 +31,7 @@ export class PMTVTicketTrialOpenButtonHandler extends InteractionHandler {
             .setDescription("The username you will use to login")
             .setTextInputComponent(
                 new TextInputBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketTrialInfoUsername)
+                    .setCustomId(ModalInputCustomIds.pmtv.trial.username)
                     .setStyle(TextInputStyle.Short)
                     .setRequired(true),
             );
@@ -41,7 +41,7 @@ export class PMTVTicketTrialOpenButtonHandler extends InteractionHandler {
             .setDescription("The password you will use to login")
             .setTextInputComponent(
                 new TextInputBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketTrialInfoPassword)
+                    .setCustomId(ModalInputCustomIds.pmtv.trial.password)
                     .setPlaceholder("Leave blank for a randomly generated password")
                     .setStyle(TextInputStyle.Short)
                     .setRequired(false),

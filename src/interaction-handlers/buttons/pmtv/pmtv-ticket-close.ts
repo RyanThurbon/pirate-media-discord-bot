@@ -1,4 +1,4 @@
-import { ButtonCustomIds, ModalCustomIds, ModalInputCustomIds } from "@/core/constants";
+import { ButtonCustomIds, ModalCustomIds, ModalInputCustomIds } from "@/lib/constants";
 import { ApplyOptions } from "@sapphire/decorators";
 import { InteractionHandler, InteractionHandlerTypes } from "@sapphire/framework";
 import type { ButtonInteraction } from "discord.js";
@@ -9,7 +9,7 @@ import { LabelBuilder, ModalBuilder, StringSelectMenuBuilder } from "discord.js"
 })
 export class PMTVTicketCloseButtonHandler extends InteractionHandler {
     public override parse(interaction: ButtonInteraction) {
-        if (interaction.customId !== ButtonCustomIds.PMTVTicketClose) {
+        if (interaction.customId !== ButtonCustomIds.pmtv.close) {
             return this.none();
         }
 
@@ -18,8 +18,8 @@ export class PMTVTicketCloseButtonHandler extends InteractionHandler {
 
     public async run(interaction: ButtonInteraction) {
         const modal = new ModalBuilder()
-            .setCustomId(ModalCustomIds.PMTVTicketConfirmClose)
-            .setTitle("Close your ticket")
+            .setCustomId(ModalCustomIds.pmtv.confirmClose)
+            .setTitle("Close your PMTV ticket")
             .addLabelComponents(this.labelComponents);
 
         return interaction.showModal(modal);
@@ -30,7 +30,7 @@ export class PMTVTicketCloseButtonHandler extends InteractionHandler {
             .setLabel("Confirm that you want to close your ticket")
             .setStringSelectMenuComponent(
                 new StringSelectMenuBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketConfirmCloseConfirmation)
+                    .setCustomId(ModalInputCustomIds.pmtv.confirmCloseConfirmation)
                     .setPlaceholder("Are you sure?")
                     .addOptions(
                         ["Yes", "No"].map((option) => ({

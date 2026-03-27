@@ -1,10 +1,5 @@
-import { UIContainer } from "@/core/ui/UIContainer";
-import {
-    container,
-    UserError,
-    type InteractionHandlerError,
-    type InteractionHandlerParseError,
-} from "@sapphire/framework";
+import { UIMessage } from "@/lib/ui/UIMessage";
+import { container, UserError, type InteractionHandlerError, type InteractionHandlerParseError } from "@sapphire/framework";
 import { MessageFlags, type Interaction } from "discord.js";
 
 export async function handleInteractionHandlerError(
@@ -30,13 +25,13 @@ function notify(interaction: Interaction, message: string) {
 
     if (interaction.deferred || interaction.replied) {
         return interaction.editReply({
-            components: [UIContainer.error(message)],
+            components: [UIMessage.error(message)],
             flags: [MessageFlags.IsComponentsV2],
         });
     }
 
     return interaction.reply({
-        components: [UIContainer.error(message)],
+        components: [UIMessage.error(message)],
         flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2],
     });
 }

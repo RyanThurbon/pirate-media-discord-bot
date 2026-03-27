@@ -1,4 +1,4 @@
-import { UIContainer } from "@/core/ui/UIContainer";
+import { UIMessage } from "@/lib/ui/UIMessage";
 import { ApplyOptions, RegisterChatInputCommand } from "@sapphire/decorators";
 import { Command } from "@sapphire/framework";
 import { MessageFlags } from "discord.js";
@@ -12,7 +12,7 @@ import { MessageFlags } from "discord.js";
 export class PingCommand extends Command {
     public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
         return await interaction.editReply({
-            components: [UIContainer.info(`Current websocket latency is ${interaction.client.ws.ping}ms`)],
+            components: [UIMessage.info(`Current websocket latency is ${interaction.client.ws.ping}ms`)],
             flags: [MessageFlags.IsComponentsV2],
         });
     }

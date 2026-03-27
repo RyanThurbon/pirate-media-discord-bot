@@ -5,7 +5,7 @@ import {
     PMTV_DEVICE_CONNECTIONS,
     PMTV_PAYMENT_METHODS,
     PMTV_PLAN_DURATIONS,
-} from "@/core/constants";
+} from "@/lib/constants";
 import { ApplyOptions } from "@sapphire/decorators";
 import { InteractionHandler, InteractionHandlerTypes } from "@sapphire/framework";
 import type { ButtonInteraction, SelectMenuComponentOptionData } from "discord.js";
@@ -16,7 +16,7 @@ import { LabelBuilder, ModalBuilder, StringSelectMenuBuilder, TextInputBuilder, 
 })
 export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
     public override parse(interaction: ButtonInteraction) {
-        if (interaction.customId !== ButtonCustomIds.PMTVTicketPurchaseOpen) {
+        if (interaction.customId !== ButtonCustomIds.pmtv.purchase.open) {
             return this.none();
         }
 
@@ -25,7 +25,7 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
 
     public async run(interaction: ButtonInteraction) {
         const modal = new ModalBuilder()
-            .setCustomId(ModalCustomIds.PMTVTicketPurchaseInfo)
+            .setCustomId(ModalCustomIds.pmtv.purchase.info)
             .setTitle("Your PMTV account details")
             .addLabelComponents(this.labelComponents);
 
@@ -38,7 +38,7 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
             .setDescription("The username you will use to login")
             .setTextInputComponent(
                 new TextInputBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketPurchaseInfoUsername)
+                    .setCustomId(ModalInputCustomIds.pmtv.purchase.username)
                     .setStyle(TextInputStyle.Short)
                     .setRequired(true),
             );
@@ -48,17 +48,17 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
             .setDescription("The password you will use to login")
             .setTextInputComponent(
                 new TextInputBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketPurchaseInfoPassword)
+                    .setCustomId(ModalInputCustomIds.pmtv.purchase.password)
                     .setPlaceholder("Leave blank for a randomly generated password")
                     .setStyle(TextInputStyle.Short)
                     .setRequired(false),
             );
 
-        const durationLabel = new LabelBuilder()
+        const planLabel = new LabelBuilder()
             .setLabel("Select the duration of your plan")
             .setStringSelectMenuComponent(
                 new StringSelectMenuBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketPurchaseInfoDuration)
+                    .setCustomId(ModalInputCustomIds.pmtv.purchase.plan)
                     .setPlaceholder("Select a plan")
                     .addOptions(this.planDurations)
                     .setRequired(true),
@@ -68,7 +68,7 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
             .setLabel("Select the number of connections")
             .setStringSelectMenuComponent(
                 new StringSelectMenuBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketPurchaseInfoConnections)
+                    .setCustomId(ModalInputCustomIds.pmtv.purchase.connections)
                     .setPlaceholder("Number of connections")
                     .addOptions(this.deviceConnections)
                     .setRequired(true),
@@ -78,13 +78,13 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
             .setLabel("Select your payment method")
             .setStringSelectMenuComponent(
                 new StringSelectMenuBuilder()
-                    .setCustomId(ModalInputCustomIds.PMTVTicketPurchaseInfoMethod)
+                    .setCustomId(ModalInputCustomIds.pmtv.purchase.method)
                     .setPlaceholder("Payment method")
                     .addOptions(this.paymentMethods)
                     .setRequired(true),
             );
 
-        return [usernameLabel, passwordLabel, durationLabel, connectionsLabel, paymentLabel];
+        return [usernameLabel, passwordLabel, planLabel, connectionsLabel, paymentLabel];
     }
 
     private get planDurations(): SelectMenuComponentOptionData[] {
@@ -95,9 +95,9 @@ export class PMTVTicketPurchaseOpenButtonHandler extends InteractionHandler {
     }
 
     private get deviceConnections(): SelectMenuComponentOptionData[] {
-        return PMTV_DEVICE_CONNECTIONS.map((connectionCount) => ({
-            label: `${connectionCount} connections`,
-            value: connectionCount.toString(),
+        return PMTV_DEVICE_CONNECTIONS.map((count) => ({
+            label: `${count} connections`,
+            value: count.toString(),
         }));
     }
 

@@ -1,4 +1,4 @@
-import type { PMClient } from "@/core/structures/PMClient";
+import type { PMClient } from "@/lib/structures/PMClient";
 import { ApplyOptions } from "@sapphire/decorators";
 import { Listener } from "@sapphire/framework";
 import { Events } from "discord.js";

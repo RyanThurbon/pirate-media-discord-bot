@@ -1,5 +1,5 @@
-import "@/core/setup";
-import { PMClient } from "@/core/structures/PMClient";
+import "@/lib/setup";
+import { PMClient } from "@/lib/structures/PMClient";
 
 const client = new PMClient();
 
